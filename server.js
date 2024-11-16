@@ -12,10 +12,21 @@ const authRoute = require("./routes/authRoute");
 
 const app = express();
 // app.use(cors());
+// app.use(cors({
+//   origin: '*', // Allow only this origin
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed HTTP methods
+//   credentials: false // Include credentials if needed
+// }));
+const allowedOrigins = ['https://school-management-app-fe.netlify.app'];
+
 app.use(cors({
-  origin: '*', // Allow only this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed HTTP methods
-  credentials: false // Include credentials if needed
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 app.use(bodyParser.json());
 
