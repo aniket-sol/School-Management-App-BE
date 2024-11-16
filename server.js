@@ -14,8 +14,8 @@ const app = express();
 // app.use(cors());
 app.use(cors({
   origin: '*', // Allow only this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-  credentials: true // Include credentials if needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed HTTP methods
+  credentials: false // Include credentials if needed
 }));
 app.use(bodyParser.json());
 
